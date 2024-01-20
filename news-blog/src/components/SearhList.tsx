@@ -3,36 +3,39 @@ import { Articl } from "./Articl"
 
 import { AppStorage } from "../redux/store"
 import { useDispatch, useSelector } from "react-redux"
-import { receivArticle, receivArticleSearch } from "../redux/pages/articles/action"
-import { useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom"
+import { receivArticle } from "../redux/pages/articles/action"
+import { useQueryParams, StringParam, NumberParam } from 'use-query-params';
+import { Spinner } from "./Spinner"
+
 
 export const SearchList: React.FC = () => {
 
-    const { articles, loadingPin } = useSelector((store: AppStorage) => store.pages.articles)
+    const { articles, loadingPin, limit, search } = useSelector((store: AppStorage) => store.pages.articles)
     const dispatch = useDispatch();
-    let navigate = useNavigate()
 
-    const [searchParams, setSearchParams] = useSearchParams();
-    const location = useLocation();
-    let search = window.location.search
-    if (search) {
-        console.log(search.split("=")[1])
-    }
+    const [query, setQuery] = useQueryParams({
+        s: StringParam,
+        offset: NumberParam,
+        limit: NumberParam,
+    });
+    const { s: searchQuery, offset: offsetNum, limit: limitNum } = query;
+
+
+
     useEffect(() => {
-        dispatch(receivArticleSearch({}) as any)
 
-    }, [])
-    if (loadingPin) {
-        return <div className="d-flex justify-content-center">
-            <div className="spinner-border" role="status">
-                <span className="visually-hidden">Loading...</span>
-            </div>
-        </div>
-    }
+        if (searchQuery) {
+            dispatch(receivArticle({ limit: limitNum, search: searchQuery }) as any)
+        } else {
+            dispatch(receivArticle({ limit: limit, search: search }) as any);
+            setQuery({ s: search, limit: limit })
+        }
+    }, [limit, search])
+
+    if (loadingPin) { return <Spinner /> }
 
     return <div className="wrapper__card">
         {articles.map((post) => {
-
             return <Articl key={post.id} articl={post} />
         })}
     </div>

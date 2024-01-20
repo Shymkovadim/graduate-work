@@ -1,12 +1,16 @@
 import { PayloadAction, createReducer } from "@reduxjs/toolkit";
 import { Articles, ArticlesPageStore, PaginatedArticlesList } from "../../../type";
-import { receivArticle } from "./action";
+import { changeSearch, receivArticle } from "./action";
+import { NULL } from "sass";
 
 
 
 const defaultState: ArticlesPageStore = {
     articles: [],
     loadingPin: false,
+    offset: 0,
+    limit: 12,
+    search: null,
 }
 
 
@@ -19,4 +23,8 @@ export const articlesReduser = createReducer<ArticlesPageStore>(defaultState, {
         store.articles = action.payload.results;
 
     },
+    [changeSearch.type]: (store, action: PayloadAction<string>) => {
+        store.search = action.payload
+        console.log(store.search)
+    }
 })

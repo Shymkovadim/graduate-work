@@ -5,23 +5,18 @@ import { blogServise } from "../api/blogService"
 import { AppStorage } from "../redux/store"
 import { useDispatch, useSelector } from "react-redux"
 import { receivArticle } from "../redux/pages/articles/action"
+import { Spinner } from "./Spinner"
 
 
 export const Blog: React.FC = () => {
 
-    const { articles, loadingPin } = useSelector((store: AppStorage) => store.pages.articles)
+    const { articles, loadingPin, limit } = useSelector((store: AppStorage) => store.pages.articles)
     const dispatch = useDispatch();
   
     useEffect(() => {
-        dispatch(receivArticle() as any)
+        dispatch(receivArticle({limit:limit}) as any)
     }, [])
-    if (loadingPin) {
-        return <div className="d-flex justify-content-center">
-        <div className="spinner-border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </div>
-    }
+    if (loadingPin) { return <Spinner /> }
 
     return <div className="wrapper__card">
         {articles.map((post) => {
