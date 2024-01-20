@@ -32,7 +32,22 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.wrapper__card {
+  margin: 0 auto;
+  width: 1200px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 20px;
+  row-gap: 20px;
+}
+
+.card__img {
+  max-height: 170px;
 }
