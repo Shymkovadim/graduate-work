@@ -1,6 +1,9 @@
 export interface ArticleProps {
     articl: Articles
 }
+export interface ArticlePageProps {
+    articl: Articles
+}
 export interface ArticlesProps {
     limit?: number | null | undefined,
     offset?: number | null | undefined,
@@ -43,7 +46,9 @@ export interface ArticlesPageStore {
 
     articles: Articles[],
     loadingPin: boolean,
-    search: string | null | undefined,
+    search: string | null,
     offset: number,
     limit: number,
+    total: number,
+
 }

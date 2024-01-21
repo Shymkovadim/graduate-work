@@ -7,3 +7,5 @@ export const receivArticle = createAsyncThunk('get Article', (creds: ArticlesPro
     return blogServise.getArticles(creds)
 })
 export const changeSearch = createAction<string>('change language')
+export const changeLimit = createAction<number>('change limit')
+export const changeOffset = createAction<number>('change offset')

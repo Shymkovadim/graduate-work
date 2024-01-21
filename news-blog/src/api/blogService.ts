@@ -27,7 +27,7 @@ export const blogServise = {
                 method: "GET",
 
             })
-        console.log(queryParams)
+
         return response.json()
     },
 }
