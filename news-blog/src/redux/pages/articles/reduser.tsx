@@ -1,6 +1,6 @@
 import { PayloadAction, createReducer } from "@reduxjs/toolkit";
-import { ArticlesPageStore, PaginatedArticlesList } from "../../../type";
-import { changeLimit, changeOffset, changeSearch, receivArticle } from "./action";
+import { Articles, ArticlesPageStore, PaginatedArticlesList } from "../../../type";
+import { changeLimit, changeOffset, changeSearch, receivArticle, receivArticleID } from "./action";
 
 
 const defaultState: ArticlesPageStore = {
@@ -10,6 +10,7 @@ const defaultState: ArticlesPageStore = {
     limit: 12,
     search: null,
     total: 0,
+    articl: null
 }
 
 
@@ -34,5 +35,12 @@ export const articlesReduser = createReducer<ArticlesPageStore>(defaultState, {
         store.offset = action.payload
 
     },
+    [receivArticleID.pending.type]: (store) => {
+        store.loadingPin = true;
+    },
+    [receivArticleID.fulfilled.type]: (store, action: PayloadAction<Articles>) => {
+        store.loadingPin = false;
+        store.articl = action.payload;
 
+    },
 })

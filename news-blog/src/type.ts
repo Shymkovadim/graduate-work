@@ -50,5 +50,13 @@ export interface ArticlesPageStore {
     offset: number,
     limit: number,
     total: number,
-
+    articl: Articles | null
+}
+export interface ArticlId {
+    id: number | string | undefined
+}
+export interface CreareArticleProps {
+    img?: File,
+    title: string,
+    text: string,
 }

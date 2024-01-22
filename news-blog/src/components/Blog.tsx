@@ -35,10 +35,12 @@ export const Blog: React.FC = () => {
 
     if (loadingPin) { return <Spinner /> }
 
-    return <div className="wrapper__card">
+    return <div className="wrapper" ><div className="wrapper__card">
         {articles.map((articl) => {
             return <Articl key={articl.id} articl={articl} />
         })}
+
+    </div>
         <Footer />
     </div>
 

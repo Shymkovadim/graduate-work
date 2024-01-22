@@ -26,7 +26,7 @@ export const SearchList: React.FC = () => {
 
     useEffect(() => {
         if (!!searchQuery) {
-            console.log(!!searchQuery)
+
             dispatch(receivArticle({ limit: limitNum, search: searchQuery, offset: offsetNum }) as any);
             dispatch(changeSearch(searchQuery))
             if (limitNum) { dispatch(changeLimit(limitNum)) }
