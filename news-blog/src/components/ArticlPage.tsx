@@ -15,7 +15,6 @@ export const ArticlPage: React.FC = () => {
     const [articlById, setArticlById] = useState<Articles>()
     useEffect(() => {
         let offset = Math.floor(Math.random() * (total - 4) + 4);
-        console.log(offset)
         dispatch(receivArticle({ limit: 4, offset: offset }) as any);
         if (articles.length > 0) {
             if (!!id) {
@@ -27,6 +26,8 @@ export const ArticlPage: React.FC = () => {
         }
     }, [id])
 
+
+    useEffect(() => { if (articl?.url) { blogServise.getNews(articl?.url) } }, [id])
 
     if (loadingPin) { return <Spinner /> }
     return <div className="wrapper" >
