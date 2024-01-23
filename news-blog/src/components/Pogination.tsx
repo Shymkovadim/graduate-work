@@ -4,7 +4,7 @@ import { useEffect, useMemo } from "react"
 import { changeLimit, changeOffset, receivArticle } from "../redux/pages/articles/action"
 import { useQueryParams, StringParam, NumberParam } from 'use-query-params';
 
-export const Footer: React.FC = () => {
+export const Pogination: React.FC = () => {
     const { limit, total, offset } = useSelector((store: AppStorage) => store.pages.articles)
     const dispatch = useDispatch()
     const [query, setQuery] = useQueryParams({
@@ -39,7 +39,7 @@ export const Footer: React.FC = () => {
 
     return <div>    <footer className="pagination d-flex justify-content-between align-items-center">
         <div>
-            <button disabled={currentPage === 1} onClick={onPreviousClick} type="button" className="btn btn-primary">Previous</button>
+            <button disabled={currentPage === 1} onClick={onPreviousClick} type="button" className="btn btn-outline-secondary">Previous</button>
         </div>
         <div>
             <span>Page: {currentPage} of {totalPage}</span>
@@ -61,7 +61,7 @@ export const Footer: React.FC = () => {
             </select>
         </div>
         <div>
-            <button disabled={currentPage === total} onClick={onNextClick} type="button" className="btn btn-primary">Next</button>
+            <button disabled={currentPage === totalPage} onClick={onNextClick} type="button" className="btn btn-outline-secondary">Next</button>
         </div>
     </footer></div>
 }

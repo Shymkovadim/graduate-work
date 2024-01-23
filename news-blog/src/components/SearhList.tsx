@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { changeLimit, changeOffset, changeSearch, receivArticle } from "../redux/pages/articles/action"
 import { useQueryParams, StringParam, NumberParam } from 'use-query-params';
 import { Spinner } from "./Spinner"
-import { Footer } from "./Footer"
+import { Pogination } from "./Pogination"
 
 
 export const SearchList: React.FC = () => {
@@ -43,10 +43,10 @@ export const SearchList: React.FC = () => {
 
     if (loadingPin) { return <Spinner /> }
 
-    return <div className="wrapper__card">
+    return <div className="wrapper" ><div className="wrapper__card">
         {articles.map((post) => {
             return <Articl key={post.id} articl={post} />
         })}
-        <Footer />
-    </div>
+
+    </div> <Pogination /></div>
 }
