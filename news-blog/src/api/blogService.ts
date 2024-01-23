@@ -73,7 +73,7 @@ export const blogServise = {
             return response.json()
         } else {
             const text = await response.text()
-            alert("Sent for validation")
+            alert(text)
             // throw new Error(text)
         }
     },
