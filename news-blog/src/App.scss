@@ -1,5 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  color: #282c34;
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
+
+
 }
 
 .App-logo {
@@ -11,6 +20,11 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+a {
+  color: #282c34;
+  text-decoration: none;
 }
 
 .App-header {
@@ -32,7 +46,28 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.wrapper__card {
+  margin: 0 auto 50px;
+  width: 1200px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 20px;
+  row-gap: 20px;
+
+}
+
+.wrapper {
+  margin: 0 auto 50px;
+  width: 1200px;
+
+}
+
+.card__img {
+  max-height: 170px;
 }
