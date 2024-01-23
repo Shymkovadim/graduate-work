@@ -6,7 +6,7 @@ import { AppStorage } from "../redux/store"
 import { useDispatch, useSelector } from "react-redux"
 import { receivArticle } from "../redux/pages/articles/action"
 import { Spinner } from "./Spinner"
-import { Footer } from "./Footer"
+import { Pogination } from "./Pogination"
 import { useQueryParams, StringParam, NumberParam } from 'use-query-params';
 
 export const Blog: React.FC = () => {
@@ -41,7 +41,7 @@ export const Blog: React.FC = () => {
         })}
 
     </div>
-        <Footer />
+        <Pogination />
     </div>
 
 

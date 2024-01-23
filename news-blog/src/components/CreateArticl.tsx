@@ -54,20 +54,20 @@ export const CreateArticle: React.FC = () => {
                 }) => (
                     // write your building UI
                     <div className="upload__image-wrapper">
-                        <button className="btn btn-secondary"
+                        <button className="btn btn-outline-secondary"
                             onClick={onImageUpload}
                             {...dragProps}
                         >
                             Click or Drop here
                         </button>
                         &nbsp;
-                        <button className="btn btn-secondary" onClick={onImageRemoveAll}>Remove all images</button>
+                        <button className="btn btn-outline-secondary" onClick={onImageRemoveAll}>Remove all images</button>
                         {imageList.map((image, index) => (
                             <div key={index} className="image-item">
                                 <img src={image['data_url']} alt="" width="100" />
                                 <div className="image-item__btn-wrapper">
-                                    <button className="btn btn-secondary" onClick={() => onImageUpdate(index)}>Update</button>
-                                    <button className="btn btn-secondary" onClick={() => onImageRemove(index)}>Remove</button>
+                                    <button className="btn bbtn-outline-secondary" onClick={() => onImageUpdate(index)}>Update</button>
+                                    <button className="btn btn-outline-secondary" onClick={() => onImageRemove(index)}>Remove</button>
                                 </div>
                             </div>
                         ))}
@@ -95,6 +95,6 @@ export const CreateArticle: React.FC = () => {
             {touchedFields.description && errors.description && <div className="form-text text-danger">description is required fill it up please</div>}
 
         </div>
-        <button onClick={handleSubmit(onSubmit)} type="button" className="btn btn-primary">Submit</button>
+        <button onClick={handleSubmit(onSubmit)} type="button" className="btn btn-outline-success float-end">Submit</button>
     </div>
 }

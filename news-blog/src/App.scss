@@ -27,6 +27,15 @@ a {
   text-decoration: none;
 }
 
+.header {
+  margin-bottom: 30px;
+}
+
+.header__logo {
+  width: 30px;
+  height: 40px;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -54,18 +63,23 @@ a {
 
 .wrapper__card {
   margin: 0 auto 50px;
-  width: 1200px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   column-gap: 20px;
   row-gap: 20px;
 
+  @media (max-width:767px) {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
 }
+
+
 
 .wrapper {
   margin: 0 auto 50px;
-  width: 1200px;
-
+  max-width: 1200px;
+  padding: 0 20px;
 }
 
 .card__img {
