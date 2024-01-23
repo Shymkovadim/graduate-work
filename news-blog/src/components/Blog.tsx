@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { Articl } from "./Articl"
-import { Articles } from "../type"
-import { blogServise } from "../api/blogService"
 import { AppStorage } from "../redux/store"
 import { useDispatch, useSelector } from "react-redux"
 import { receivArticle } from "../redux/pages/articles/action"
 import { Spinner } from "./Spinner"
 import { Pogination } from "./Pogination"
 import { useQueryParams, StringParam, NumberParam } from 'use-query-params';
+
+
+
+
 
 export const Blog: React.FC = () => {
 
@@ -19,16 +21,12 @@ export const Blog: React.FC = () => {
         offset: NumberParam,
         limit: NumberParam,
     });
-    const { s: searchQuery, offset: offsetNum, limit: limitNum } = query;
+
 
 
     useEffect(() => {
-
-
         dispatch(receivArticle({ limit: limit, offset: offset }) as any);
         setQuery({ limit: limit, offset: offset })
-
-
     }, [limit, offset])
 
 
@@ -39,7 +37,6 @@ export const Blog: React.FC = () => {
         {articles.map((articl) => {
             return <Articl key={articl.id} articl={articl} />
         })}
-
     </div>
         <Pogination />
     </div>

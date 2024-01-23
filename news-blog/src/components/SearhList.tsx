@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { Articl } from "./Articl"
-
 import { AppStorage } from "../redux/store"
 import { useDispatch, useSelector } from "react-redux"
 import { changeLimit, changeOffset, changeSearch, receivArticle } from "../redux/pages/articles/action"
@@ -11,7 +10,8 @@ import { Pogination } from "./Pogination"
 
 export const SearchList: React.FC = () => {
 
-    const { articles, loadingPin, limit, search, offset } = useSelector((store: AppStorage) => store.pages.articles)
+    const { articles, loadingPin, limit, search, offset } = useSelector((store: AppStorage) => store.pages.articles);
+
     const dispatch = useDispatch();
 
     const [query, setQuery] = useQueryParams({
@@ -20,9 +20,6 @@ export const SearchList: React.FC = () => {
         limit: NumberParam,
     });
     const { s: searchQuery, offset: offsetNum, limit: limitNum } = query;
-
-
-
 
     useEffect(() => {
         if (!!searchQuery) {

@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { App } from './App';
 import fetchIntercept from 'fetch-intercept'
+
+
 fetchIntercept.register({
   request: async function (url: any, config: any) {
     console.log('request was intercepted!')

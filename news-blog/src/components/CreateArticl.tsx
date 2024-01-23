@@ -16,21 +16,15 @@ export const CreateArticle: React.FC = () => {
 
 
     const onSubmit: SubmitHandler<any> = (data) => {
-
         blogServise.createArticl({
             img: data.image,
             text: data.text,
             title: data.title,
 
         })
-
-
     }
 
-
-
     const onChange = (imageList: any, addUpdateIndex: any) => {
-
         setImages(imageList);
     };
 

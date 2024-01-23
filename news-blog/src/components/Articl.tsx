@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { ArticleProps, Articles } from "../type"
+import { ArticleProps } from "../type"
 
 
 

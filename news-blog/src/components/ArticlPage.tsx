@@ -1,18 +1,23 @@
+import { receivArticle, receivArticleID } from "../redux/pages/articles/action";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom"
 import { AppStorage } from "../redux/store";
 import { useEffect, useState } from "react";
 import { Articles } from "../type";
 import { Spinner } from "./Spinner";
-import { receivArticle, receivArticleID } from "../redux/pages/articles/action";
 import { Articl } from "./Articl";
-import { blogServise } from "../api/blogService";
+
 
 export const ArticlPage: React.FC = () => {
-    const { id } = useParams()
-    const { articl, articles, loadingPin, total } = useSelector((store: AppStorage) => store.pages.articles)
+
+    const [articlById, setArticlById] = useState<Articles>();
+
+    const { id } = useParams();
+
+    const { articl, articles, loadingPin, total } = useSelector((store: AppStorage) => store.pages.articles);
     const dispatch = useDispatch();
-    const [articlById, setArticlById] = useState<Articles>()
+
+
     useEffect(() => {
         let offset = Math.floor(Math.random() * (total - 4) + 4);
         console.log(offset)
@@ -25,12 +30,11 @@ export const ArticlPage: React.FC = () => {
         } else {
             dispatch(receivArticleID({ id }) as any);
         }
-    }, [id])
+    }, [id]);
 
 
     if (loadingPin) { return <Spinner /> }
     return <div className="wrapper" >
-
         <div className="card mb-3">
             <img src={!!articlById ? articlById.image_url : !!articl ? articl.image_url : ""} className="card-img-top " alt="..." />
             <div className="card-body">

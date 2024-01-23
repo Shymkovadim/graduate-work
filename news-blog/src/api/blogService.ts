@@ -1,8 +1,11 @@
 import { ArticlId, Articles, ArticlesProps, CreareArticleProps, PaginatedArticlesList } from "../type";
+
+
+
+
 function getBasicHeaders() {
     const headers = new Headers();
     headers.set('Content-Type', 'application/json');
-
     return headers;
 }
 
@@ -74,21 +77,7 @@ export const blogServise = {
         } else {
             const text = await response.text()
             alert(text)
-            // throw new Error(text)
+
         }
-    },
-
-
-    async getNews(props: string) {
-
-
-        const response = await fetch(props,
-            {
-                method: "GET",
-                credentials: "include"
-
-            })
-
-        return response.json()
     },
 }
