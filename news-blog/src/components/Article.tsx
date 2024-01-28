@@ -3,7 +3,7 @@ import { ArticleProps } from "../type"
 
 
 
-export const Articl: React.FC<ArticleProps> = ({ articl }) => {
+export const Article: React.FC<ArticleProps> = ({ articl }) => {
     return <div className="card card__wrapper" ><Link to={`/${articl.id}`}>
         <img src={articl.image_url} className="card-img-top card__img" alt="..." />
         <div className="card-body">

@@ -1,11 +1,11 @@
-import { receivArticle, receivArticleID } from "../redux/pages/articles/action";
+import { receivArticleID } from "../redux/pages/articles/action";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom"
 import { AppStorage } from "../redux/store";
 import { useEffect, useState } from "react";
 import { Articles } from "../type";
 import { Spinner } from "./Spinner";
-import { Articl } from "./Articl";
+
 
 
 export const ArticlPage: React.FC = () => {
@@ -14,18 +14,16 @@ export const ArticlPage: React.FC = () => {
 
     const { id } = useParams();
 
-    const { articl, articles, loadingPin, total } = useSelector((store: AppStorage) => store.pages.articles);
+    const { articl, articles } = useSelector((store: AppStorage) => store.pages.articles);
     const dispatch = useDispatch();
 
 
     useEffect(() => {
-        let offset = Math.floor(Math.random() * (total - 4) + 4);
-        console.log(offset)
-        dispatch(receivArticle({ limit: 4, offset: offset }) as any);
+
         if (articles.length > 0) {
             if (!!id) {
-                let a = articles.find(item => item.id === +id)
-                setArticlById(a)
+                let articleById = articles.find(item => item.id === +id)
+                setArticlById(articleById)
             };
         } else {
             dispatch(receivArticleID({ id }) as any);
@@ -33,8 +31,9 @@ export const ArticlPage: React.FC = () => {
     }, [id]);
 
 
-    if (loadingPin) { return <Spinner /> }
+
     return <div className="wrapper" >
+        <Spinner />
         <div className="card mb-3">
             <img src={!!articlById ? articlById.image_url : !!articl ? articl.image_url : ""} className="card-img-top " alt="..." />
             <div className="card-body">
@@ -43,11 +42,7 @@ export const ArticlPage: React.FC = () => {
                 <p className="card-text"><small className="text-body-secondary">{!!articlById ? articlById.published_at.slice(0, 10) : !!articl ? articl.published_at.slice(0, 10) : ""}</small></p>
                 <a href={!!articlById ? articlById.url : !!articl ? articl.url : ""} className="btn btn-success float-sm-end" >Go to website</a>
             </div>
-        </div><div className="wrapper__card">
-
-            {articles.map((articl) => {
-                return <Articl key={articl.id} articl={articl} />
-            })}</div>
+        </div>
     </div>
 
 

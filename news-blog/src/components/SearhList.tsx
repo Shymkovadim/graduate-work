@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { Articl } from "./Articl"
+import { Article } from "./Article"
 import { AppStorage } from "../redux/store"
 import { useDispatch, useSelector } from "react-redux"
 import { changeLimit, changeOffset, changeSearch, receivArticle } from "../redux/pages/articles/action"
@@ -10,7 +10,7 @@ import { Pogination } from "./Pogination"
 
 export const SearchList: React.FC = () => {
 
-    const { articles, loadingPin, limit, search, offset } = useSelector((store: AppStorage) => store.pages.articles);
+    const { articles, limit, search, offset } = useSelector((store: AppStorage) => store.pages.articles);
 
     const dispatch = useDispatch();
 
@@ -22,28 +22,27 @@ export const SearchList: React.FC = () => {
     const { s: searchQuery, offset: offsetNum, limit: limitNum } = query;
 
     useEffect(() => {
-        if (!!searchQuery) {
-
+        if (!!search) {
+            dispatch(receivArticle({ limit: limit, search: search, offset: offset }) as any);
+        } else {
             dispatch(receivArticle({ limit: limitNum, search: searchQuery, offset: offsetNum }) as any);
-            dispatch(changeSearch(searchQuery))
+            if (searchQuery) dispatch(changeSearch(searchQuery))
             if (limitNum) { dispatch(changeLimit(limitNum)) }
             if (offsetNum) { dispatch(changeOffset(offsetNum)) }
         }
         setQuery({ s: search, limit: limit, offset: offset })
-    }, [searchQuery, limitNum, offsetNum])
-
-    useEffect(() => {
-        dispatch(receivArticle({ limit: limit, search: search, offset: offset }) as any);
-        setQuery({ s: search, limit: limit, offset: offset })
     }, [limit, search, offset])
 
 
-    if (loadingPin) { return <Spinner /> }
 
-    return <div className="wrapper" ><div className="wrapper__card">
-        {articles.map((post) => {
-            return <Articl key={post.id} articl={post} />
-        })}
 
-    </div> <Pogination /></div>
+    return <div className="wrapper" >
+        <Spinner />
+        <div className="wrapper__card">
+            {articles.map((post) => {
+                return <Article key={post.id} articl={post} />
+            })}
+        </div>
+        <Pogination />
+    </div>
 }

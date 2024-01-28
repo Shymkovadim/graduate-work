@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { Articl } from "./Articl"
+import { Article } from "./Article"
 import { AppStorage } from "../redux/store"
 import { useDispatch, useSelector } from "react-redux"
 import { receivArticle } from "../redux/pages/articles/action"
@@ -31,13 +31,15 @@ export const Blog: React.FC = () => {
 
 
 
-    if (loadingPin) { return <Spinner /> }
 
-    return <div className="wrapper" ><div className="wrapper__card">
-        {articles.map((articl) => {
-            return <Articl key={articl.id} articl={articl} />
-        })}
-    </div>
+
+    return <div className="wrapper" >
+        < Spinner />
+        <div className="wrapper__card">
+            {articles.map((articl) => {
+                return <Article key={articl.id} articl={articl} />
+            })}
+        </div>
         <Pogination />
     </div>
 
